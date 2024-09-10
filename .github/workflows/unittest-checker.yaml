@@ -55,9 +55,9 @@ jobs:
         working-directory: forked-repo
         run: cp .env.example .env
 
-#      - name: Set environment variables
-#        working-directory: forked-repo
-#        run: export $(grep -v '^#' .env | xargs)
+      - name: Set environment variables
+        working-directory: forked-repo
+        run: export $(grep -v '^#' .env | xargs)
 
       - name: Build and run application via docker compose
         working-directory: forked-repo
