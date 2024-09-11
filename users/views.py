@@ -1,4 +1,4 @@
-from rest_framework import status, permissions, generics
+from rest_framework import status, permissions, generics,parsers
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.contrib.auth import authenticate
@@ -97,8 +97,9 @@ class LoginView(APIView):
     )
 )
 class UsersMe(generics.RetrieveAPIView, generics.UpdateAPIView):
-    http_method_names = ['get',]
+    http_method_names = ['get', 'patch']  # patch qo'shildi
     queryset = User.objects.filter(is_active=True)
+    parser_classes = [parsers.MultiPartParser]  # fayl yuklash uchun MultiPartParser qo'shildi
     permission_classes = (IsAuthenticated,)
 
     def get_object(self):
