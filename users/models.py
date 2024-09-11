@@ -4,10 +4,7 @@ from django.db import models
 
 class CustomUser(AbstractUser):
     """  This model represents a custom user. """
-
-
     middle_name = models.CharField(max_length=30, blank=True, null=True)
-
 
     class Meta:
         db_table = "user"  # database table name
@@ -15,14 +12,12 @@ class CustomUser(AbstractUser):
         verbose_name_plural = "Users"
         ordering = ["-date_joined"]  # descending order by date joined
 
-
     def __str__(self):
         """ This method returns the full name of the user"""
         if self.full_name:
             return self.full_name
         else:
             return self.email or self.username
-
 
     @property
     def full_name(self):
