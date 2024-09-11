@@ -10,8 +10,8 @@ middle_name = models.CharField(max_length=30, blank=True, null=True)
 
 
 class Meta:
-    db_table = "users"  # database table name
-    verbose_name = "Users"
+    db_table = "user"  # database table name
+    verbose_name = "User"
     verbose_name_plural = "Users"
     ordering = ["-date_joined"]  # descending order by date joined
 
