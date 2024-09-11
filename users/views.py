@@ -7,7 +7,7 @@ from rest_framework.permissions import IsAuthenticated
 from .serializers import UserSerializer, LoginSerializer, ValidationErrorSerializer, TokenResponseSerializer
 from django.contrib.auth import get_user_model
 
-from .serializers import UserSerializer, LoginSerializer, ValidationErrorSerializer, TokenResponseSerializer
+from .serializers import UserSerializer, LoginSerializer, ValidationErrorSerializer, TokenResponseSerializer,UserUpdateSerializer
 from drf_spectacular.utils import extend_schema, extend_schema_view
 
 # Swagger uchun kerakli sozlamalar
@@ -84,6 +84,14 @@ class LoginView(APIView):
         summary="Get user information",
         responses={
             200: UserSerializer,
+            400: ValidationErrorSerializer
+        }
+    ),
+    patch=extend_schema(                   # user malumotlarni yangilash uchun patch qo'shildi
+        summary="Update user information",
+        request=UserUpdateSerializer,
+        responses={
+            200: UserUpdateSerializer,
             400: ValidationErrorSerializer
         }
     )
