@@ -44,6 +44,7 @@ DJANGO_APPS = [
 EXTERNAL_APPS = [
     'rest_framework',            # yangi package ni qo'shib olamiz
     'rest_framework_simplejwt',  # yangi package ni qo'shib olamiz
+    'drf_spectacular',
 ]
 
 LOCAL_APPS = [
@@ -168,6 +169,7 @@ DJANGORESIZED_DEFAULT_FORMAT_EXTENSIONS = {'JPEG': ".jpg"}
 DJANGORESIZED_DEFAULT_NORMALIZE_ROTATION = True
 
 REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',   # drf_spectacular swagger uchun sozlamalar
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework_simplejwt.authentication.JWTAuthentication',
@@ -210,4 +212,19 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_REFRESH_EXP_CLAIM': 'refresh_exp',
     'SLIDING_TOKEN_LIFETIME': timedelta(minutes=60),
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=10),
+}
+
+# drf_spectacular swagger
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Medium',
+    'DESCRIPTION': 'Medium Clone project',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    'SECURITY_DEFINITIONS': {
+        'Bearer': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header'
+        }
+    },
 }
