@@ -1,6 +1,6 @@
 from pathlib import Path
 from decouple import config
-from datetime import timedelta
+from datetime import timedelta, datetime
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -94,16 +94,16 @@ WSGI_APPLICATION = "core.wsgi.application"
 #     }
 # }
 
-DATABASES = {
-    'default': {
-        'ENGINE': config('DB_ENGINE', default='django.db.backends.postgresql'),
-        'NAME': config('DB_NAME', default=''),
-        'USER': config('DB_USER', default=''),
-        'PASSWORD': config('DB_PASSWORD', default=''),
-        'HOST': config('DB_HOST', default=''),
-        'PORT': config('DB_PORT', default=''),
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': config('DB_ENGINE', default='django.db.backends.postgresql'),
+#         'NAME': config('DB_NAME', default=''),
+#         'USER': config('DB_USER', default=''),
+#         'PASSWORD': config('DB_PASSWORD', default=''),
+#         'HOST': config('DB_HOST', default=''),
+#         'PORT': config('DB_PORT', default=''),
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -249,3 +249,6 @@ CACHES = {
 
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 SESSION_CACHE_ALIAS = "default"
+
+BIRTH_YEAR_MIN = 1900
+BIRTH_YEAR_MAX = datetime.now().year
